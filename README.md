@@ -180,19 +180,22 @@ sudo systemctl start prometheus
 
 - If everything works fine, enter your `Public IP:3000` in searchbar. You will see the login page: `admin` as default username and password.
 
-  
+- Click `Dashboard` - `New` - `Import`.
+
+![grafana-watcher-1](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-1.png)
+
+- Download [json](https://github.com/endorphinestake/story-validator-watcher/blob/d2d5956e5e0102274dbfbf308bc47be66dcc40d9/Modified%20Story%20Validator%20Watcher-1733176062943.json) for Story Validator Watcher.
+- Click `Upload dashboard JSON file` and drop here your file.
+
+![grafana-watcher-2](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-2.png)
+
+- Be sure to specify the data source - `prometheus-1` and click `Import`.
+
+![grafana-watcher-3](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-3.png)
+
+- Completed, if everything is done correctly, your dashboard will start displaying data.
+
+![grafana-watcher-4](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-4.png)
 
 
-
-
-
-
-
-
-##### Check it out by Cumulo:
-[![Grafana Dashboard Demo by ](https://img.shields.io/badge/Grafana%20Dashboard-Demo%20Online-blue?style=for-the-badge&logo=grafana&logoColor=white)](http://74.208.16.201:3000/public-dashboards/17c6d645404a400f8aa7c3c532fd4a61?orgId=1&refresh=5s)
-
-##### Check it out by Endorphine Stake (only new metrics are shown):
-[![Grafana Dashboard Demo by ](https://img.shields.io/badge/Grafana%20Dashboard-Demo%20Online-blue?style=for-the-badge&logo=grafana&logoColor=white)](http://168.119.179.24:3000/public-dashboards/09292904e88544cfabb8527cd40ad496?orgId=1&refresh=5s)
-
-## All metrics from Endorphine [here](https://github.com/endorphinestake/story-protocol/blob/main/grafana/Story%20Grafana%20by%20Endorphine%20Stake-1729284218377.json)
+## Features pars_script
