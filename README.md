@@ -1,12 +1,26 @@
-# Story Validator Watcher
 
-![grafana screen](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/story-validator-watcher.png)
+![watcher screen](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/story-validator-watcher.png)
 
-## [Pars_script](https://github.com/endorphinestake/story-validator-watcher/tree/main/pars_script) for cosmos_validator_watcher by [Kiln](https://github.com/kilnfi/cosmos-validator-watcher)
-- A custom script was written that adds active validators to the watcher configuration in real time. You can ask for more about the watcher itself in [this repository](https://github.com/kilnfi/cosmos-validator-watcher).
+<font size = 7><center><b><u>About Story Validator Watcher</u></b></center></font>
+-  Cosmos Validator Watcher is set to streamline monitoring and interaction with Cosmos-based blockchains and validators by [Kiln](https://github.com/kilnfi/cosmos-validator-watcher).
+-  This custom tool does not allow you to receive data from the blockchain in real time and distribute it to the watcher.
+-  Therefore, our team wrote [pars_script](https://github.com/endorphinestake/story-validator-watcher/tree/main/pars_script) which adds active validators to the watcher configuration in real time.
 
-Features that were implemented:
 
+## Let's focus! 
+
+[How to configure grafana?](How-to-configure-grafana?)
+
+How to configure prometheus?
+
+How to configure story validator watcher?
+
+
+
+
+
+
+#How to configure grafana?
 
 ##### Check it out by Cumulo:
 [![Grafana Dashboard Demo by ](https://img.shields.io/badge/Grafana%20Dashboard-Demo%20Online-blue?style=for-the-badge&logo=grafana&logoColor=white)](http://74.208.16.201:3000/public-dashboards/17c6d645404a400f8aa7c3c532fd4a61?orgId=1&refresh=5s)
