@@ -6,21 +6,137 @@
 -  This custom tool does not allow you to receive data from the blockchain in real time and distribute it to the watcher.
 -  Therefore, our team wrote [pars_script](https://github.com/endorphinestake/story-validator-watcher/tree/main/pars_script) which adds active validators to the watcher configuration in real time.
 
-
-## Let's focus! 
-
-[How to configure grafana?](How-to-configure-grafana?)
-
-How to configure prometheus?
-
-How to configure story validator watcher?
+[![Grafana Dashboard Demo by ](https://img.shields.io/badge/Grafana%20Dashboard-Demo%20Online-blue?style=for-the-badge&logo=grafana&logoColor=white)](https://story-watcher.endorphinestake.com/d/d79d55e7-6e70-4725-b78c-b22db4a71b08/modified-story-validator-watcher?orgId=1&refresh=5s&theme=light)
 
 
+### If you want to set up your own Story Validator Watcher - let's continue!
+
+Import the GPG key for Grafana:
+```bash
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+```
+
+Add the Grafana repository to the APT sources:
+```bash 
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+```
+
+Update the package lists:
+```bash
+sudo apt update
+```
+
+Install the grafana:
+```bash
+sudo apt install grafana
+```
+
+Start and enable service:
+```bash
+sudo systemctl start grafana-server
+sudo systemctl enable grafana-server
+```
+
+Download Prometheus:
+```bash
+sudo wget https://github.com/prometheus/prometheus/releases/download/v2.47.0/prometheus-2.47.0.linux-amd64.tar.gz
+```
+
+Extract Files:
+```bash
+sudo tar vxf prometheus*.tar.gz
+```
+
+Create a user for prometeus:
+```bash
+sudo groupadd --system prometheus
+sudo useradd -s /sbin/nologin --system -g prometheus prometheus
+```
+
+Create directories for prometheus:
+```bash
+sudo mkdir /etc/prometheus
+sudo mkdir /var/lib/prometheus
+cd prometheus*/
+```
+
+Move the binary files:
+```bash
+sudo mv prometheus /usr/local/bin
+sudo mv promtool /usr/local/bin
+sudo mv console* /etc/prometheus
+sudo mv prometheus.yml /etc/prometheus
+```
+
+Set owner:
+```bash
+sudo chown prometheus:prometheus /usr/local/bin/prometheus
+sudo chown prometheus:prometheus /usr/local/bin/promtool
+sudo chown prometheus:prometheus /etc/prometheus
+sudo chown -R prometheus:prometheus /etc/prometheus/consoles
+sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
+sudo chown -R prometheus:prometheus /var/lib/prometheus
+```
+
+Change config:
+```bash
+sudo nano /etc/prometheus/prometheus.yml
+```
+
+```bash
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'node'
+    static_configs:
+      - targets: ['localhost:26660']  # Adjust the target to your node exporter endpoint
+```
+
+Create prometeus service:
+```bash
+sudo nano /etc/systemd/system/prometheus.service
+```
+
+```[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+ --config.file /etc/prometheus/prometheus.yml \
+ --storage.tsdb.path /var/lib/prometheus/ \
+ --web.console.templates=/etc/prometheus/consoles \
+ --web.console.libraries=/etc/prometheus/console_libraries
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Start and enable service:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable prometheus
+sudo systemctl start prometheus
+```
 
 
 
 
-#How to configure grafana?
+
+
+
+
+
 
 ##### Check it out by Cumulo:
 [![Grafana Dashboard Demo by ](https://img.shields.io/badge/Grafana%20Dashboard-Demo%20Online-blue?style=for-the-badge&logo=grafana&logoColor=white)](http://74.208.16.201:3000/public-dashboards/17c6d645404a400f8aa7c3c532fd4a61?orgId=1&refresh=5s)
