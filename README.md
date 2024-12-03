@@ -178,7 +178,9 @@ sudo systemctl enable prometheus
 sudo systemctl start prometheus
 ```
 
+- If everything works fine, enter your `Public IP:3000` in searchbar. You will see the login page: `admin` as default username and password.
 
+  
 
 
 
