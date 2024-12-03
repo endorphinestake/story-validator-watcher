@@ -37,6 +37,50 @@ sudo systemctl start grafana-server
 sudo systemctl enable grafana-server
 ```
 
+Check status grafana-server:
+```bash
+sudo systemctl status grafana-server
+```
+- If everything works fine, enter your `Public IP:3000` in searchbar. You will see the login page: `admin` as default username and password.
+
+
+
+Install go:
+```bash
+sudo apt-get install -y snapd
+sudo snap install go --classic
+sudo 
+```
+Build cosmos-validator-watcher:
+```bash
+git clone https://github.com/kilnfi/cosmos-validator-watcher
+cd cosmos-validator-watcher
+git checkout v0.14.0
+make build
+cd build
+mv cosmos-validator-watcher /usr/local/bin/
+```
+
+
+
+```bash
+git clone https://github.com/LinGena/rbc
+```
+```bash
+apt install python3-pip
+```
+
+```bash
+pip install vk_api
+pip install schedule
+```
+
+```bash
+cd rbc
+python3 main.py
+```
+
+
 Download Prometheus:
 ```bash
 sudo wget https://github.com/prometheus/prometheus/releases/download/v2.47.0/prometheus-2.47.0.linux-amd64.tar.gz
@@ -93,9 +137,13 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: 'node'
+  - job_name: 'watcher'
     static_configs:
-      - targets: ['localhost:26660']  # Adjust the target to your node exporter endpoint
+      - targets: ['localhost:8080']  # Adjust the target to your node exporter endpoint
+
+  - job_name: 'story node'
+    static_configs:
+      - targets: ['135.181.208.245:26660']  # Adjust the target to your story node exporter endpoint
 ```
 
 Create prometeus service:
@@ -103,7 +151,8 @@ Create prometeus service:
 sudo nano /etc/systemd/system/prometheus.service
 ```
 
-```[Unit]
+```bash
+[Unit]
 Description=Prometheus
 Wants=network-online.target
 After=network-online.target
