@@ -199,3 +199,42 @@ sudo systemctl start prometheus
 
 
 ## Features pars_script
+
+By default, `parse_script` scans the API every 3 seconds. You can change these values:
+```bash
+nano $HOME/rbc/main.py
+```
+```bash
+schedule.every(1).seconds.do(main) 
+schedule.every(1).minutes.do(main)
+schedule.every(1).hours.do(main)
+schedule.every(1).days.do(main) 
+schedule.every(1).weeks.do(main) 
+```
+
+parse_script
+
+
+If you want to restart `parse_script` - you need to clear the database:
+```bash
+rm -rf $HOME/rbc/rpc.db
+```
+
+
+To add multiple RPC to watcher
+```bash
+nano $HOME/rbc/parse/get_subprocess_link.py
+```
+
+get_subprocess_link
+
+Edit API for parse_script:
+```bash
+nano $HOME/rbc/parse/parse.py
+```
+
+
+
+
+
+
