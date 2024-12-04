@@ -14,7 +14,8 @@ class Parse(Db):
             'https://odyssey.storyrpc.io/validators'
             ]
         self.api_links = [
-            'https://api-story-testnet.itrocket.net/cosmos/staking/v1beta1/validators'
+            'https://api-story-testnet.itrocket.net/cosmos/staking/v1beta1/validators',
+            'https://api-story-testnet.trusted-point.com/cosmos/staking/v1beta1/validators'
             ]
     
     def run(self) -> list:
