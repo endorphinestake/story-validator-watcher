@@ -51,7 +51,7 @@ Install go:
 ```bash
 sudo apt-get install -y snapd
 sudo snap install go --classic
-sudo 
+sudo apt install make
 ```
 Build cosmos-validator-watcher:
 ```bash
