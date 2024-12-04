@@ -4,13 +4,16 @@
 <font size = 7><center><b><u>About Story Validator Watcher</u></b></center></font>
 -  Cosmos Validator Watcher is set to streamline monitoring and interaction with Cosmos-based blockchains and validators by [Kiln](https://github.com/kilnfi/cosmos-validator-watcher).
 -  This custom tool does not allow you to receive data from the blockchain in real time and distribute it to the watcher.
--  Therefore, our team wrote [pars_script](https://github.com/endorphinestake/story-validator-watcher/tree/main/pars_script) which adds active validators to the watcher configuration in real time.
+-  Therefore, our team create [pars_script](https://github.com/endorphinestake/story-validator-watcher/tree/main/pars_script) which adds active validators to the watcher configuration in real time.
+-  The script collects data from the `x/staking` API module and the `/validators` RPC.
 
 [![Grafana Dashboard Demo by ](https://img.shields.io/badge/Grafana%20Dashboard-Demo%20Online-blue?style=for-the-badge&logo=grafana&logoColor=white)](https://story-watcher.endorphinestake.com/d/d79d55e7-6e70-4725-b78c-b22db4a71b08/modified-story-validator-watcher?orgId=1&refresh=5s&theme=light)
 
+- `watcher` as default username and password
 
 ### If you want to set up your own Story Validator Watcher - let's continue!
 
+#### Install Grafana
 Import the GPG key for Grafana:
 ```bash
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
@@ -26,7 +29,7 @@ Update the package lists:
 sudo apt update
 ```
 
-Install the grafana:
+Install the Grafana:
 ```bash
 sudo apt install grafana
 ```
@@ -43,8 +46,7 @@ sudo systemctl status grafana-server
 ```
 - If everything works fine, enter your `Public IP:3000` in searchbar. You will see the login page: `admin` as default username and password.
 
-
-
+#### Install Cosmos Validator Watcher
 Install go:
 ```bash
 sudo apt-get install -y snapd
@@ -61,15 +63,13 @@ cd build
 mv cosmos-validator-watcher /usr/local/bin/
 ```
 
-
-
+#### Instal Parse Script
 ```bash
 git clone https://github.com/LinGena/rbc
 ```
 ```bash
 apt install python3-pip
 ```
-
 ```bash
 pip install vk_api
 pip install schedule
@@ -87,7 +87,7 @@ cd rbc
 python3 main.py
 ```
 
-
+#### Install Prometheus
 Download Prometheus:
 ```bash
 sudo wget https://github.com/prometheus/prometheus/releases/download/v2.47.0/prometheus-2.47.0.linux-amd64.tar.gz
@@ -191,7 +191,7 @@ sudo systemctl start prometheus
 
 ![grafana-watcher-1](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-1.png)
 
-- Download [json](https://github.com/endorphinestake/story-validator-watcher/blob/d2d5956e5e0102274dbfbf308bc47be66dcc40d9/Modified%20Story%20Validator%20Watcher-1733176062943.json) for grafana dashboard.
+- Download [json](https://github.com/endorphinestake/story-validator-watcher/blob/d2d5956e5e0102274dbfbf308bc47be66dcc40d9/Modified%20Story%20Validator%20Watcher-1733176062943.json) for Grafana dashboard.
 - Click `Upload dashboard JSON file` and drop here your file.
 
 ![grafana-watcher-2](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-2.png)
@@ -205,7 +205,7 @@ sudo systemctl start prometheus
 ![grafana-watcher-4](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-4.png)
 
 
-## Features `pars_script`
+## Features Parse Script
 
 - By default, `parse_script` scans the API every 3 seconds. You can change this:
 ```bash
@@ -244,6 +244,8 @@ nano $HOME/rbc/parse/parse.py
 You can download the Grafana dashboard here:
 
 [![Grafana Dashboard Demo](https://img.shields.io/badge/Grafana%20Dashboard-Official-blue?style=for-the-badge&logo=grafana&logoColor=white)](https://story-watcher.endorphinestake.com/d/d79d55e7-6e70-4725-b78c-b22db4a71b08/modified-story-validator-watcher?orgId=1&refresh=5s&theme=light)
+
+`watcher` as default username and password
 
 
 
