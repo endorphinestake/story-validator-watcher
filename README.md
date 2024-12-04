@@ -63,9 +63,9 @@ cd build
 mv cosmos-validator-watcher /usr/local/bin/
 ```
 
-#### Instal Parse Script
+#### Instal Pars Script
 ```bash
-git clone https://github.com/LinGena/rbc
+git clone https://github.com/endorphinestake/story-validator-watcher/tree/main/pars_script
 ```
 ```bash
 apt install python3-pip
@@ -76,14 +76,14 @@ pip install schedule
 ```
 
 ```bash
-cd rbc
+cd pars_script
 python3 main.py
 ```
 To run in the background, use screen:
 ```bash
-rm -rf $HOME/rbc/rpc.db
+rm -rf $HOME/pars_script/rpc.db
 screen -S main
-cd rbc
+cd pars_script
 python3 main.py
 ```
 
@@ -207,9 +207,9 @@ sudo systemctl start prometheus
 
 ## Features Parse Script
 
-- By default, `parse_script` scans the API every 3 seconds. You can change this:
+- By default, script scans the API every 3 seconds. You can change this:
 ```bash
-nano $HOME/rbc/main.py
+nano $HOME/pars_script/main.py
 ```
 ```bash
 schedule.every(1).seconds.do(main) 
@@ -222,19 +222,19 @@ schedule.every(1).weeks.do(main)
 
 - You must clear the database before each restart `parse_script`:
 ```bash
-rm -rf $HOME/rbc/rpc.db
+rm -rf $HOME/pars_script/rpc.db
 ```
 
 - To add multiple RPC to watcher:
 ```bash
-nano $HOME/rbc/parse/get_subprocess_link.py
+nano $HOME/pars_script/parse/get_subprocess_link.py
 ```
 ![get_subprocess_link](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/get_subprocess_link.png)
 
 
 - Edit API for parse_script:
 ```bash
-nano $HOME/rbc/parse/parse.py
+nano $HOME/pars_script/parse/parse.py
 ```
 ![parse](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/parse.png)
 
@@ -243,7 +243,7 @@ nano $HOME/rbc/parse/parse.py
 
 You can download the Grafana dashboard here:
 
-[![Grafana Dashboard Demo](https://img.shields.io/badge/Grafana%20Dashboard-Official-blue?style=for-the-badge&logo=grafana&logoColor=white)](https://story-watcher.endorphinestake.com/d/d79d55e7-6e70-4725-b78c-b22db4a71b08/modified-story-validator-watcher?orgId=1&refresh=5s&theme=light)
+[![Grafana Dashboard Demo by ](https://img.shields.io/badge/Grafana%20Dashboard-Demo%20Online-blue?style=for-the-badge&logo=grafana&logoColor=white)](https://story-watcher.endorphinestake.com/d/d79d55e7-6e70-4725-b78c-b22db4a71b08/modified-story-validator-watcher?orgId=1&refresh=5s&theme=light)
 
 `watcher` as default username and password
 
