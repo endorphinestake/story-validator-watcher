@@ -79,6 +79,13 @@ pip install schedule
 cd rbc
 python3 main.py
 ```
+To run in the background, use screen:
+```bash
+rm -rf $HOME/rbc/rpc.db
+screen -S main
+cd rbc
+python3 main.py
+```
 
 
 Download Prometheus:
@@ -184,7 +191,7 @@ sudo systemctl start prometheus
 
 ![grafana-watcher-1](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-1.png)
 
-- Download [json](https://github.com/endorphinestake/story-validator-watcher/blob/d2d5956e5e0102274dbfbf308bc47be66dcc40d9/Modified%20Story%20Validator%20Watcher-1733176062943.json) for Story Validator Watcher.
+- Download [json](https://github.com/endorphinestake/story-validator-watcher/blob/d2d5956e5e0102274dbfbf308bc47be66dcc40d9/Modified%20Story%20Validator%20Watcher-1733176062943.json) for grafana dashboard.
 - Click `Upload dashboard JSON file` and drop here your file.
 
 ![grafana-watcher-2](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-2.png)
@@ -198,9 +205,9 @@ sudo systemctl start prometheus
 ![grafana-watcher-4](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/grafana-watcher-4.png)
 
 
-## Features pars_script
+## Features `pars_script`
 
-By default, `parse_script` scans the API every 3 seconds. You can change these values:
+- By default, `parse_script` scans the API every 3 seconds. You can change this:
 ```bash
 nano $HOME/rbc/main.py
 ```
@@ -211,27 +218,32 @@ schedule.every(1).hours.do(main)
 schedule.every(1).days.do(main) 
 schedule.every(1).weeks.do(main) 
 ```
+![schedule_main](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/schedule_main.png)
 
-parse_script
-
-
-If you want to restart `parse_script` - you need to clear the database:
+- You must clear the database before each restart `parse_script`:
 ```bash
 rm -rf $HOME/rbc/rpc.db
 ```
 
-
-To add multiple RPC to watcher
+- To add multiple RPC to watcher:
 ```bash
 nano $HOME/rbc/parse/get_subprocess_link.py
 ```
+![get_subprocess_link](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/get_subprocess_link.png)
 
-get_subprocess_link
 
-Edit API for parse_script:
+- Edit API for parse_script:
 ```bash
 nano $HOME/rbc/parse/parse.py
 ```
+![parse](https://github.com/endorphinestake/story-validator-watcher/blob/main/images/parse.png)
+
+
+## Story Validator Watcher Demo Online  
+
+You can download the Grafana dashboard here:
+
+[![Grafana Dashboard Demo](https://img.shields.io/badge/Grafana%20Dashboard-Official-blue?style=for-the-badge&logo=grafana&logoColor=white)](https://story-watcher.endorphinestake.com/d/d79d55e7-6e70-4725-b78c-b22db4a71b08/modified-story-validator-watcher?orgId=1&refresh=5s&theme=light)
 
 
 
